@@ -39,7 +39,7 @@ async function run() {
     // myItems sorting
 
     app.get('/inventories', async(req,res) => {
-      const email = req.query;
+      const email = req.query.email;
       console.log('here is the email',email);
       const query = {email:email};
       const cursor = itemscollection.find(query);
