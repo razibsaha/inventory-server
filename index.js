@@ -36,6 +36,17 @@ async function run() {
         res.send(items);
     } )
 
+    // myItems sorting
+
+    app.get('/inventories', async(req,res) => {
+      const email = req.query;
+      console.log('here is the email',email);
+      const query = {email:email};
+      const cursor = itemscollection.find(query);
+      const myItems = await cursor.toArray();
+      res.send(myItems)
+    })
+
     // post data
 
     app.post('/inventory', async(req,res)=>{
