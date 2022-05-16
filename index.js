@@ -26,22 +26,19 @@ async function run() {
 
 
     app.get("/inventories", async (req, res) => {
-      const email = req.query.email;
-
-      const query = {email};
+      const query = {};
       const cursor = itemscollection.find(query);
       const items = await cursor.toArray();
       res.send(items);
     });
 
-    /* app.get('/inventories', async(req,res) => {
+    app.get('/inventories', async(req,res) => {
       const email = req.query.email;
-      console.log('here is the email',email);
-      const query = {email:email};
-      const cursor = itemscollection.find(query);
-      const myItems = await cursor.toArray();
+      const query2 = {email:email};
+      const cursor2 = itemscollection.find(query2);
+      const myItems = await cursor2.toArray();
       res.send(myItems)
-    }) */
+    })
 
 
 
