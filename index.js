@@ -22,20 +22,6 @@ async function run() {
     await client.connect();
     const itemscollection = client.db("inventory").collection("items");
 
-    /* app.get("/inventories", async (req, res) => {
-      const query = {};
-      const cursor = itemscollection.find(query);
-      const items = await cursor.toArray();
-      res.send(items);
-    }); */
-
-    app.get('/inventory/:id', async(req,res)=> {
-        const id = req.params.id;
-        const query = {_id: ObjectId(id)};
-        const items = await itemscollection.findOne(query);
-        res.send(items);
-    } )
-
     // myItems sorting
 
     app.get('/inventories', async(req,res) => {
@@ -46,6 +32,24 @@ async function run() {
       const myItems = await cursor.toArray();
       res.send(myItems)
     })
+
+    app.get("/inventories", async (req, res) => {
+      const query = {};
+      const cursor = itemscollection.find(query);
+      const items = await cursor.toArray();
+      res.send(items);
+    });
+
+    app.get('/inventory/:id', async(req,res)=> {
+        const id = req.params.id;
+        const query = {_id: ObjectId(id)};
+        const items = await itemscollection.findOne(query);
+        res.send(items);
+    } )
+
+    
+
+    
 
     // post data
 
