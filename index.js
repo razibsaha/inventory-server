@@ -24,6 +24,14 @@ async function run() {
 
     // myItems sorting
 
+
+    app.get("/inventories", async (req, res) => {
+      const query = {};
+      const cursor = itemscollection.find(query);
+      const items = await cursor.toArray();
+      res.send(items);
+    });
+
     app.get('/inventories', async(req,res) => {
       const email = req.query.email;
       console.log('here is the email',email);
@@ -33,12 +41,7 @@ async function run() {
       res.send(myItems)
     })
 
-    app.get("/inventories", async (req, res) => {
-      const query = {};
-      const cursor = itemscollection.find(query);
-      const items = await cursor.toArray();
-      res.send(items);
-    });
+
 
     app.get('/inventory/:id', async(req,res)=> {
         const id = req.params.id;
